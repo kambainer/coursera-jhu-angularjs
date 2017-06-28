@@ -1,0 +1,13 @@
+/*Styles for BONUS PART*/
+.msg-text-ok {
+    color: green;
+}
+.msg-text-empty {
+    color: red;
+}
+.list-ok {
+    border-color: green;
+}
+.list-empty {
+    border-color: red;
+}
