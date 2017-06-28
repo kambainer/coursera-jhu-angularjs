@@ -17,9 +17,13 @@
             arrMeals = arrMeals.filter(function CutEmpties(obj){ return obj.toString().trim() != ""});
             if(arrMeals.length===0){
                 $scope.mealMessage = "Please enter data first";
+                $scope.cssMessageClass = "msg-text-empty";
+                $scope.cssInputClass = "list-empty";
             }
             else {
                 $scope.mealMessage = (arrMeals.length <= 3)?"Enjoy!":"Too much!";
+                $scope.cssMessageClass="msg-text-ok";
+                $scope.cssInputClass = "list-ok";
             }
         };
     }
