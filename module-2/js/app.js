@@ -57,7 +57,7 @@
             arrTo.push(arrFrom[itemIndex]);
             arrFrom.splice(itemIndex, 1);
         };
-        
+
         service.RemoveBoughtItem = function (itemIndex)
         {
             service.SwapItem(itemIndex, boughtItems, needItems);
