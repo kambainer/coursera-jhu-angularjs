@@ -1,1 +1,7 @@
-<h3>This is just a @title: {{title}}</h3>
+<h3>This is just a @title: {{list.title}}</h3>
+<ul>
+    <li ng-repeat="item in list.found">
+        {{item.count}} of {{item.name}}
+    </li>
+</ul>
+<div class="error" ng-if="list.cookiesInList()">Warning, we've found some cookies in your list!</div>

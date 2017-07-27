@@ -6,7 +6,6 @@
     angular.module('NarrowItDownApp',[])
         .controller('NarrowItDownController', NarrowItDownController)
         .service('MenuSearchService', MenuSearchService)
-
         .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com")
         .directive('foundItems', FoundItemsDirective);
 
@@ -16,8 +15,8 @@
       var ddo = {
         templateUrl: 'found-list.html',
         scope: {
-          title: '@title'
-          //items: '<'  //one-way-binding
+          title: '@title',
+          found: '<'  //one-way-binding
         },
         controller: FoundItemsDirectiveController,
         controllerAs: 'list',
@@ -28,6 +27,17 @@
 
     function FoundItemsDirectiveController() {
       var list = this;
+      list.title = "TITLE IN THE DIRECTIVEs CONTROLLER";
+
+      list.cookiesInList = function () {
+          for (var i = 0; i < list.found.length; i++) {
+             var name = list.found[i].name;
+             if (name.toLowerCase().indexOf("cookies") !== -1) {
+                 return true;
+             }
+         }
+         return false;
+      };
     }
 
 
@@ -38,7 +48,7 @@
       //ctrl.found = MenuSearchService.getMenuCategories();
       ctrl.found = [{name: 'Cookie', count: 5},
                     {name: 'Milk', count: 3}];
-
+      ctrl.title="Title property, found count: " + ctrl.found.length + " items.";
       ctrl.LogSomething = function () {
         console.log(ctrl.found);
       }
