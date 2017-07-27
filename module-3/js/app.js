@@ -14,12 +14,20 @@
     {
       //routine
       var ddo = {
-        scope: {items: '<'}
-        //controller: ShoppingListDirectiveController,
-        //controllerAs: 'list',
-        //bindToController: true
+        templateUrl: 'found-list.html',
+        scope: {
+          title: '@title'
+          //items: '<'  //one-way-binding
+        },
+        controller: FoundItemsDirectiveController,
+        controllerAs: 'list',
+        bindToController: true
       };
       return ddo;
+    }
+
+    function FoundItemsDirectiveController() {
+      var list = this;
     }
 
 
@@ -27,10 +35,11 @@
     function NarrowItDownController(MenuSearchService){
       //TODO inject
       var ctrl = this;
-      ctrl.found = MenuSearchService.getMenuCategories();
+      //ctrl.found = MenuSearchService.getMenuCategories();
+      ctrl.found = [{name: 'Cookie', count: 5},
+                    {name: 'Milk', count: 3}];
 
       ctrl.LogSomething = function () {
-      	console.log('Controllers found: '+ ctrl.found);
         console.log(ctrl.found);
       }
     }
