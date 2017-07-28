@@ -19,7 +19,9 @@
       <button class="btn btn-primary" ng-click="ctrl.LogSomething()">Narrow It Down For Me!</button>
     </div>
     <div class="container">
-      <found-items title="{{ctrl.title}}" found="ctrl.found"></found-items>
+      <found-items title="{{ctrl.title}}"
+                   found="ctrl.found"
+                   on-remove="ctrl.removeItem(index)"></found-items>
       
     </div>
     <!-- found-items should be implemented as a component 
