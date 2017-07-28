@@ -1,7 +1,7 @@
 <h3>This is just a @title: {{list.title}}</h3>
 <ul>
     <li ng-repeat="item in list.found">
-        {{item.count}} of {{item.name}}
+        {{item.name}}
         <button ng-click="list.onRemove({index: $index});">Don't want this one!</button>
     </li>
 </ul>

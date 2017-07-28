@@ -11,12 +11,12 @@
 <body ng-app="NarrowItDownApp">
    <div class="container" ng-controller="NarrowItDownController as ctrl">
     <h1>Narrow Down Your Chinese Menu Choice</h1>
-
+       {{searchTerm}}
     <div class="form-group">
-      <input type="text" placeholder="search term" class="form-control">
+      <input type="text" placeholder="search term" class="form-control" ng-model="searchTerm">
     </div>
     <div class="form-group narrow-button">
-      <button class="btn btn-primary" ng-click="ctrl.LogSomething()">Narrow It Down For Me!</button>
+      <button class="btn btn-primary" ng-click="ctrl.FindMeAFood('{{searchTerm}}')">Narrow It Down For Me!</button>
     </div>
     <div class="container">
       <found-items title="{{ctrl.title}}"

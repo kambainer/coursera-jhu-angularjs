@@ -35,27 +35,31 @@
           return (list.found.length === 0)
       };
     }
-
-    NarrowItDownController.$inject = ['MenuSearchService', 'ApiBasePath'];
-    function NarrowItDownController(MenuSearchService){
-      //TODO inject
+    NarrowItDownController.$inject = ['MenuSearchService', '$scope'];
+    function NarrowItDownController(MenuSearchService, $scope){
+        //todo : how to provide a search term correctly?
       var ctrl = this;
-      ctrl.found = MenuSearchService.getMatchedMenuItems("beef");
-      ctrl.title="Title property, found count: " + ctrl.found.length + " items.";
-      console.log(ctrl.found);
+      $scope.searchTerm = "";
+      ctrl.found=[];
+
+      ctrl.FindMeAFood = function () {
+        console.log($scope.searchTerm);
+        var promise = MenuSearchService.getMatchedMenuItems($scope.searchTerm);
+        promise.then(function (result) {
+            ctrl.found = result;
+        });
+      };
 
       ctrl.removeItem = function (index) {
             console.log("Hi, "+index+"!");
             console.log('this is:',this);
             MenuSearchService.removeItem(index);
-      }
+      };
     }
     
     MenuSearchService.$inject = ['$http', 'ApiBasePath'];
-
     function MenuSearchService($http, ApiBasePath) {
         var service = this;
-        // List of shopping items
         var items = [];
 
         service.getMatchedMenuItems = function (searchTerm){
@@ -63,18 +67,18 @@
                 method: "GET",
                 url: (ApiBasePath + "/menu_items.json"),
             }).then(function (response) {
-                console.log("response:",
-                     response.data['menu_items'].filter(
-                         function MatchToSearchTerm(value){
-                             return (value['name'].toLowerCase().indexOf(searchTerm) !== -1)
-                         })
-                 );
+                items = response.data['menu_items'].filter(
+                    function MatchToSearchTerm(value){
+                        return (value['name'].toLowerCase().indexOf(searchTerm) !== -1)
+                    });
+                console.log(items);
+                return items;
+            })
+            .catch(function (error) {
+                console.log(error);
             });
 
-
-
-            items = new Array({name: 'Cookie', count: 5}, {name: 'Milk', count: 3});
-            return items;
+            return response;
         };
 
         service.removeItem = function (itemIndex) {
