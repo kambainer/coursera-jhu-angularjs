@@ -69,7 +69,7 @@
             }).then(function (response) {
                 items = response.data['menu_items'].filter(
                     function MatchToSearchTerm(value){
-                        return (value['name'].toLowerCase().indexOf(searchTerm) !== -1)
+                        return (value['name'].toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1)
                     });
                 console.log(items);
                 return items;

@@ -1,8 +1,13 @@
-<h3>This is just a @title: {{list.title}}</h3>
-<ul>
-    <li ng-repeat="item in list.found">
-        {{item.name}}
-        <button ng-click="list.onRemove({index: $index});">Don't want this one!</button>
-    </li>
-</ul>
-<div class="error" ng-if="list.cookiesInList()">Warning, we've found some cookies in your list!</div>
+<div class="container">
+    <table>
+    <tr ng-repeat="item in list.found">
+        <td>
+            {{item.name}}
+        </td>
+        <td>
+            <button ng-click="list.onRemove({index: $index});">Don't want this one!</button>
+        </td>
+    </tr>
+    </table>
+</div>
+<div class="error" ng-if="list.isFoundEmpty()">No results found</div>
