@@ -17,6 +17,7 @@
         templateUrl: 'found-list.html',
         scope: {
           found: '<',
+          firstRun: '<',
           onRemove: '&'
         },
         controller: 'FoundItemsDirectiveController as list',
@@ -29,7 +30,7 @@
       var list = this;
 
       list.isFoundEmpty = function () {
-          return (list.found.length === 0)
+          return (list.found.length === 0 && !list.firstRun);
       };
     }
     NarrowItDownController.$inject = ['MenuSearchService', '$scope'];
@@ -38,11 +39,13 @@
       var ctrl = this;
       $scope.searchTerm = "";
       ctrl.found=[];
+      ctrl.firstRun = true;
 
       ctrl.FindMeAFood = function () {
         var promise = MenuSearchService.getMatchedMenuItems($scope.searchTerm);
         promise.then(function (result) {
             ctrl.found = result;
+            ctrl.firstRun = false;
         });
       };
 
