@@ -64,10 +64,14 @@
                 method: "GET",
                 url: (ApiBasePath + "/menu_items.json"),
             }).then(function (response) {
-                items = response.data['menu_items'].filter(
-                    function MatchToSearchTerm(value){
-                        return (value['name'].toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1)
-                    });
+                if (searchTerm.trim()==="")
+                    items = [];
+                else {
+                    items = response.data['menu_items'].filter(
+                        function MatchToSearchTerm(value) {
+                            return (value['description'].toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1)
+                        });
+                }
                 return items;
             })
             .catch(function (error) {
