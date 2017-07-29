@@ -16,12 +16,10 @@
       var ddo = {
         templateUrl: 'found-list.html',
         scope: {
-          title: '@title',
           found: '<',
           onRemove: '&'
         },
         controller: 'FoundItemsDirectiveController as list',
-        //controllerAs: 'list',
         bindToController: true
       };
       return ddo;
@@ -30,20 +28,18 @@
     function FoundItemsDirectiveController() {
       var list = this;
 
-      //TODO lets use that for viewing nothing found message
       list.isFoundEmpty = function () {
           return (list.found.length === 0)
       };
     }
     NarrowItDownController.$inject = ['MenuSearchService', '$scope'];
     function NarrowItDownController(MenuSearchService, $scope){
-        //todo : how to provide a search term correctly?
+      //todo : how to provide a search term correctly?
       var ctrl = this;
       $scope.searchTerm = "";
       ctrl.found=[];
 
       ctrl.FindMeAFood = function () {
-        console.log($scope.searchTerm);
         var promise = MenuSearchService.getMatchedMenuItems($scope.searchTerm);
         promise.then(function (result) {
             ctrl.found = result;
@@ -51,8 +47,6 @@
       };
 
       ctrl.removeItem = function (index) {
-            console.log("Hi, "+index+"!");
-            console.log('this is:',this);
             MenuSearchService.removeItem(index);
       };
     }
@@ -71,7 +65,6 @@
                     function MatchToSearchTerm(value){
                         return (value['name'].toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1)
                     });
-                console.log(items);
                 return items;
             })
             .catch(function (error) {
@@ -84,7 +77,5 @@
         service.removeItem = function (itemIndex) {
             items.splice(itemIndex, 1);
         };
-
     }
-    
 })();
