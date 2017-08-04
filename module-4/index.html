@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Module-4 / JHU / AngularJS</title>
+    <link rel="stylesheet" href="css/styles.css">
     <script src="lib/angular.min.js"></script>
     <script src="lib/angular-ui-router.min.js"></script>
     <script src="lib/menuapp.module.js"></script>
@@ -12,6 +13,12 @@
     <script src="lib/items.component.js"></script>
 </head>
 <body ng-app="MenuApp">
-
+<H1>Дратуйте</H1>
+<!-- <div ng-controller="CategoriesController as cats">
+    <categories title="{{cats.title}}"
+                items="cats.items"
+                get-categories="cats.GetCats()"></categories>
+</div>-->
+<ui-view></ui-view>
 </body>
 </html>
