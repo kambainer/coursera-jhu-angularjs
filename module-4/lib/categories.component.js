@@ -1,11 +1,12 @@
 /**
  * Created by kondratyevam on 03.08.2017.
  */
+(function () {
 angular.module('data')
     .controller('CategoriesController',CategoriesController)
     .component('categories',{
         templateUrl: 'categories.html',
-        controller: CategoriesCompController,
+        //controller: CategoriesCompController,
         bindings: {
             items: '<',
             myTitle: '@title',
@@ -13,29 +14,10 @@ angular.module('data')
         }
     });
 
-function CategoriesCompController() {
-    //TODO
-    var $ctrl = this;
-
-    $ctrl.$onInit = function () {
-        console.log('$onInit');
-        $ctrl.getCategories();
-        console.log($ctrl);
-    };
-}
-CategoriesController.$inject=['MenuDataService'];
-function CategoriesController(MenuDataService) {
+CategoriesController.$inject=['MenuDataService','categories'];
+function CategoriesController(MenuDataService, categories) {
     var cats = this;
     cats.title = "This is cats title";
-    cats.items=[];
-
-    cats.GetCats = function () {
-        console.log('onGetCats');
-        var promise = MenuDataService.getAllCategories();
-        promise.then(function (result) {
-            cats.items = result;
-            console.log(cats.items);
-        });
-    };
-
+    cats.items = categories;
 }
+})();

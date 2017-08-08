@@ -1,6 +1,5 @@
-<h3>
-    Losos: {{$ctrl.myTitle}}
-</h3>
 <ul>
-    <li ng-repeat="item in $ctrl.items">{{item.id}}: {{item.short_name}}: {{item.name}}</li>
+    <li ng-repeat="item in $ctrl.items">
+        <a ui-sref="viewItem({category:item.short_name})">{{item.id}}: {{item.short_name}}: {{item.name}}</a>
+    </li>
 </ul>
