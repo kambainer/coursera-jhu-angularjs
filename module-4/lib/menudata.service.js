@@ -9,9 +9,6 @@
 MenuDataService.$inject = ['$http', 'ApiBasePath'];
 function MenuDataService ($http, ApiBasePath) {
     var service = this;
-    console.log('MenuDataService:'+ApiBasePath);
-
-
     service.getAllCategories = function () {
         var response = $http({
             method: "GET",
@@ -28,7 +25,6 @@ function MenuDataService ($http, ApiBasePath) {
     };
 
     service.getItemsForCategory = function(categoryShortName){
-        console.log('getItemsForCategory:', categoryShortName)
         var response = $http({
             method: "GET",
             url: (ApiBasePath + "/menu_items.json"),

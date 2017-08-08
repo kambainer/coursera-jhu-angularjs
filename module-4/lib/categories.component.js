@@ -17,7 +17,6 @@ angular.module('data')
 CategoriesController.$inject=['MenuDataService','categories'];
 function CategoriesController(MenuDataService, categories) {
     var cats = this;
-    cats.title = "This is cats title";
     cats.items = categories;
 }
 })();

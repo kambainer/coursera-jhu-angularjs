@@ -12,6 +12,5 @@
         var itemDetail = this;
         itemDetail.categoryName = menu_items.category.name;
         itemDetail.menu_items = menu_items.menu_items;
-        console.log('itemDetail.menu_items:',menu_items);
     }
 })();
